@@ -35,7 +35,20 @@ import javax.xml.bind.annotation.XmlValue;
  *
  */
 public abstract class Measurement implements Comparable<Measurement>, Serializable {
+    /**
+     * Function that can be used in a lambda expression.
+     * 
+     * @param <T> The type measurement being applied
+     * @param <U> The unit of the measurement being applied
+     */
     public interface DoubleMeasurementFunction<T extends Measurement, U> {
+        /**
+         * The functional operation.
+         * 
+         * @param value The value to apply
+         * @param unit The unit of the value being applied
+         * @return The result
+         */
         T apply(double value, U unit);
     }
 
@@ -97,7 +110,6 @@ public abstract class Measurement implements Comparable<Measurement>, Serializab
     
     /**
      * Returns a newly constructed Measurement that is of the same type as this class.
-     * This method uses introspection to call the constructor.
      * 
      * @param value The initial value of the Measurement
      * @return The new Measurement (actually a subclass of Measurement)
@@ -106,6 +118,13 @@ public abstract class Measurement implements Comparable<Measurement>, Serializab
         return (Measurement)constructor.apply(value);
     }
     
+    /**
+     * Returns a newly constructed Measurement that is of the same type as this class.
+     * 
+     * @param value The initial value
+     * @param unit The unit of the initial value
+     * @return The new Measurement (actually a subclass of Measurement)
+     */
     public Measurement newMeasurement(double value, Unit unit) {
         try {
             Constructor<? extends Measurement> c = this.getClass().getConstructor(double.class, unit.getClass());   

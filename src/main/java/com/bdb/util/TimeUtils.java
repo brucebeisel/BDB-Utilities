@@ -22,79 +22,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.TemporalAccessor;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Bruce
- *
- */
-/**
+ * Collection of static methods to manipulate time.
+ * 
  * @author Bruce
  *
  */
 public class TimeUtils {
     private TimeUtils() {
-    }
-
-    /**
-     * Change the time of the provided calendar to midnight. The year, month and date are not changed.
-     *
-     * @param c The calendar to change
-     */
-    @Deprecated
-    public static void setToMidnight(Calendar c) {
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-    }
-
-    /**
-     * Change the date and time to midnight on the first day of the month. The month and year are not changed.
-     *
-     * @param c The Calendar to change
-     */
-    @Deprecated
-    public static void setToBeginningOfMonth(Calendar c) {
-        setToMidnight(c);
-        c.set(Calendar.DAY_OF_MONTH, 1);
-    }
-
-    /**
-     * Set the time of the provided calendar to the end of the day. The year, month and date are not changed.
-     *
-     * @param c The Calendar to change
-     */
-    @Deprecated
-    public static void setToEndOfDay(Calendar c) {
-        c.set(Calendar.HOUR_OF_DAY, 23);
-        c.set(Calendar.MINUTE, 59);
-        c.set(Calendar.SECOND, 59);
-        c.set(Calendar.MILLISECOND, 999);
-    }
-
-    @Deprecated
-    public static void setToEndOfMonth(Calendar c) {
-        setToBeginningOfMonth(c);
-        c.add(Calendar.MONTH, 1);
-        c.add(Calendar.DAY_OF_MONTH, -1);
-        setToEndOfDay(c);
-    }
-
-    /**
-     * Check to see if the two calendars are in the same day.
-     *
-     * @param first The first calendar that will be compared
-     * @param second The second calendar that will be compared
-     *
-     * @return true if both calendars are in the same day.
-     */
-    @Deprecated
-    public static boolean isSameDay(Calendar first, Calendar second) {
-        return first.get(Calendar.DAY_OF_MONTH) == second.get(Calendar.DAY_OF_MONTH)
-                && first.get(Calendar.MONTH) == second.get(Calendar.MONTH)
-                && first.get(Calendar.YEAR) == second.get(Calendar.YEAR);
     }
 
     /**

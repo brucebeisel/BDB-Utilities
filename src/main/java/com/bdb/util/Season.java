@@ -26,10 +26,21 @@ import java.time.Month;
  *
  */
 public enum Season {
-
+    /**
+     * Winter season
+     */
     WINTER(Month.DECEMBER, Month.MARCH),
+    /**
+     * Spring season
+     */
     SPRING(Month.MARCH, Month.JUNE),
+    /**
+     * Summer season
+     */
     SUMMER(Month.JUNE, Month.SEPTEMBER),
+    /**
+     * Fall/Autumn season
+     */
     FALL(Month.SEPTEMBER, Month.DECEMBER);
 
     static {
@@ -42,11 +53,12 @@ public enum Season {
         FALL.previousSeason = SUMMER;
         FALL.nextSeason = WINTER;
     }
-    //
-    // The seasons always start on the 21st. Due to leap year, sometimes it actually
-    // starts on the 22nd, but we are going to ignore that in order to simplify the
-    // concept of a season
-    //
+
+    /**
+     * The seasons always start on the 21st. Due to leap year, sometimes it actually
+     * starts on the 22nd, but we are going to ignore that in order to simplify the
+     * concept of a season
+     */
     public static final int SEASON_START_DAY_OF_MONTH = 21;
     
     private final Month startMonth;

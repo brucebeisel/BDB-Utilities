@@ -98,7 +98,7 @@ public class DBConnection implements BBRunnable {
                 // The return value is ignore because we are only trying to reach the server,
                 // and exception will be thrown if the server cannot be communicated with.
                 //
-                connection.isReadOnly();
+                boolean readOnly = connection.isReadOnly();
             }
             else {
                 logger.log(Level.FINE, "Connecting to DB. URL = {0} User = {1}", new Object[]{url, user});
@@ -196,15 +196,18 @@ public class DBConnection implements BBRunnable {
      * @throws NoDbConnectionException There is no connection with the database
      * @throws SQLException An error occurred
      */
-    public void execute(String sql) throws NoDbConnectionException, SQLException {
+    public boolean execute(final String sql) throws NoDbConnectionException, SQLException {
+        boolean result = false;
         logger.log(Level.FINE, "Excute: {0}", sql);
 
         if (connection == null)
             throw new NoDbConnectionException("Cannot execute SQL statement " + sql + " because there is no connection to the database");
        
         try (Statement stmt = connection.createStatement()) {
-            stmt.execute(sql);
+            result = stmt.execute(sql);
         }
+
+        return result;
     }
 
     /**
@@ -229,7 +232,7 @@ public class DBConnection implements BBRunnable {
      * @param sql The SQL to be executed
      * @return The number of rows affected by the update or -1 if the update failed
      */
-    public int executeUpdate(String sql) {
+    public int executeUpdate(final String sql) {
         int count = -1;
         
         try {

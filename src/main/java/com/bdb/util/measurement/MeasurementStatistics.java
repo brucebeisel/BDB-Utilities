@@ -59,6 +59,15 @@ public class MeasurementStatistics<M extends Measurement> {
         average.applyValue(value, duration);
     }
     
+    /**
+     * Apply a set of values to the statistics.
+     * 
+     * @param minValue The minimum value of this entry
+     * @param maxValue The maximum value of this entry
+     * @param avgValue The average value of this entry
+     * @param time The time of this entry
+     * @param duration The duration of the measured value
+     */
     public void applyValues(M minValue, M maxValue, M avgValue, LocalDateTime time, Duration duration) {
         minimum.applyValue(minValue, time);
         maximum.applyValue(maxValue, time);

@@ -18,15 +18,17 @@ package com.bdb.util;
 
 import javax.swing.*;
 
-//
-// CLASS: LabeledFieldPanel
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+
 //
 // DESCRIPTION:
 //	A convenience panel that displays a field with a label.
 //	It uses the default layout manager, but that can be changed
 //	by the application if desired.
 //
-public class LabeledFieldPanel<T extends JComponent> extends JPanel {
+public class LabeledFieldPanel<T extends Node> extends HBox {
     public enum LabelLocation {
         LABEL_LEFT,
         LABEL_RIGHT
@@ -34,7 +36,7 @@ public class LabeledFieldPanel<T extends JComponent> extends JPanel {
 
     private static final long serialVersionUID = 8657357228739720158L;
 
-    private final JLabel label;
+    private final Label label;
     private final T component;
 
     /**
@@ -46,18 +48,16 @@ public class LabeledFieldPanel<T extends JComponent> extends JPanel {
      */
     public LabeledFieldPanel(String text, T component, LabelLocation labelLocation) {
         this.component = component;
-        BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
-        setLayout(layout);
-        label = new JLabel(text);
+        label = new Label(text);
         label.setLabelFor(component);
 
         if (labelLocation == LabelLocation.LABEL_LEFT) {
-            add(label);
-            add(component);
+            getChildren().add(label);
+            getChildren().add(component);
         }
         else {
-            add(component);
-            add(label);
+            getChildren().add(component);
+            getChildren().add(label);
         }
     }
 
@@ -76,7 +76,7 @@ public class LabeledFieldPanel<T extends JComponent> extends JPanel {
      * 
      * @return The label
      */
-    public JLabel getLabel() {
+    public Label getLabel() {
         return label;
     }
 

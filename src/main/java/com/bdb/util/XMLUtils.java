@@ -25,8 +25,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.NamedNodeMap;
 
-public class XMLUtils
-{
+/**
+ * A collection of static methods for manipulating XML
+ * 
+ * @author bruce
+ */
+public class XMLUtils {
+    private XMLUtils() {}
+
+    /**
+     * Find an element in the DOM structure.
+     * 
+     * @param e The element to find
+     * @return The node that was found or NULL
+     */
     public static Node findTextNode(Element e)
     {
 	//

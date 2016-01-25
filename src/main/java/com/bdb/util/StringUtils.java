@@ -19,16 +19,27 @@ package com.bdb.util;
 import java.util.*;
 import java.io.*;
 
-//
-// CLASS: StringUtils
-//
-// DESCRIPTION:
-//	Group of static methods for manipulating strings.
-//
+/**
+ * Group of static methods for manipulating strings.
+ */
 public final class StringUtils {
+    /**
+     * Default delimiters of space and tabs
+     */
     public static final String DEFAULT_DELIMITERS = " \t";
+    /**
+     * Default quotes characters.
+     */
     public static final String DEFAULT_QUOTE_CHARS = "'\"";
 
+    /**
+     * Break a string into tokens based on delimiters and quote characters.
+     * 
+     * @param input The string to be tokenized
+     * @param delimiters The delimiters used to tokenize the input
+     * @param quoteChars Characters that are treated as quotations
+     * @return  The list of tokens. It is empty if there are no tokens
+     */
     public static List<String> tokenize(String input, String delimiters, String quoteChars) {
 	ArrayList<String> list = new ArrayList<>();
 
@@ -71,6 +82,12 @@ public final class StringUtils {
 	return list;
     }
 
+    /**
+     * Break a string into tokens using default delimiters (space, and tab) and default quotes (' and ")
+     * 
+     * @param input The string to tokenize
+     * @return The list of tokens
+     */
     public static List<String> tokenize(String input) {
 	return tokenize(input, DEFAULT_DELIMITERS, DEFAULT_QUOTE_CHARS);
     }

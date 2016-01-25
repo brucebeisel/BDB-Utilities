@@ -16,28 +16,39 @@
  */
 package com.bdb.util;
 
-public final class ThreadUtils
-{
-    public static void sleep(long millis)
-    {
-        try
-        {
+/**
+ * Class of static methods for manipulating threads.
+ * 
+ * @author bruce
+ */
+public final class ThreadUtils {
+    private ThreadUtils() {}
+
+    /**
+     * Sleep and catch the interrupted exception.
+     * 
+     * @param millis The time to sleep
+     */
+    public static void sleep(long millis) {
+        try {
             Thread.sleep(millis);
         }
-        catch (InterruptedException e)
-        {
+        catch (InterruptedException e) {
             
         }
     }
     
-    public static void sleep(long millis, int nanos)
-    {
-        try
-        {
+    /**
+     * Sleep and catch the interrupted exception.
+     * 
+     * @param millis millisecond portion of the sleep time
+     * @param nanos Nanosecond portion of the sleep time
+     */
+    public static void sleep(long millis, int nanos) {
+        try {
             Thread.sleep(millis, nanos);
         }
-        catch (InterruptedException e)
-        {
+        catch (InterruptedException e) {
             
         }
     }

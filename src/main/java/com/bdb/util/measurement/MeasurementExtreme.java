@@ -27,7 +27,19 @@ import java.time.format.FormatStyle;
  * @param <M> The type of Measurement for this extreme value
  */
 public final class MeasurementExtreme<M extends Measurement> {
-    public enum ExtremeType { MAXIMUM, MINIMUM };
+    /**
+     * The type of extreme.
+     */
+    public enum ExtremeType {
+        /**
+         * The extreme is a maximum
+         */
+        MAXIMUM,
+        /**
+         * The extreme is a minimum
+         */
+        MINIMUM
+    };
     private M             extreme;
     private LocalDateTime time;
     private final ExtremeType   type;

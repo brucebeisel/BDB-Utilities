@@ -36,11 +36,11 @@ import java.util.logging.Logger;
  * @param <T> The class that represents the data in the table
  */
 public abstract class DBTable<T> {
-    private final String         tableName;
-    protected final DBConnection connection;
-    private static final Logger     log = Logger.getLogger(DBTable.class.getName());
+    private final DBConnection             connection;
+    private final String                   tableName;
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final Logger            logger = Logger.getLogger(DBTable.class.getName());
 
     /**
      * Constructor.
@@ -82,7 +82,7 @@ public abstract class DBTable<T> {
                 stmt.close();
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
         }
     }
     
@@ -97,7 +97,7 @@ public abstract class DBTable<T> {
                 rs.close();
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
         }
     }
 
@@ -133,56 +133,9 @@ public abstract class DBTable<T> {
             return connection.tableExists(tableName);
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
             return false;
         }
-    }
-
-    /**
-     * Create the table.
-     * 
-     * @return Whether the table was created
-     */
-    @Deprecated
-    public boolean createTable() {
-        throw new UnsupportedOperationException("createTable not supported for table " + tableName);
-    }
-
-    /**
-     * Actually perform the create table and handle any exceptions.
-     * 
-     * @param sql The SQL needed to create the table
-     * @return Whether the table was created
-     */
-    @Deprecated
-    protected boolean executeCreateTable(String sql) {
-        return connection.executeUpdate(sql) == 1;
-    }
-
-    /**
-     * Drop the table from the database.
-     * 
-     * @return Whether the table was dropped
-     */
-    @Deprecated
-    public final boolean dropTable() {
-        boolean success = true;
-        try {
-            //
-            // Make sure we are connected
-            //
-            connection.connect();
-
-            String sql = "drop table " + tableName;
-
-            connection.execute(sql);
-        }
-        catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
-            success = false;
-        }
-        
-        return success;
     }
 
     /**
@@ -203,7 +156,7 @@ public abstract class DBTable<T> {
             connection.execute(sql);
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
             success = false;
         }
         
@@ -226,7 +179,7 @@ public abstract class DBTable<T> {
             connection.execute(str);
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
             success = false;
         }
         
@@ -249,12 +202,12 @@ public abstract class DBTable<T> {
      * @param sql The add row SQL
      * @return Whether the row was added
      */
-    protected boolean executeAddRow(String sql) {
+    protected boolean executeAddRow(final String sql) {
         try (PreparedStatement stmt = connection.getConnection().prepareStatement(sql)) {
             return executeAddRow(stmt);
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
             return false;
         }
  
@@ -273,7 +226,7 @@ public abstract class DBTable<T> {
                 success = false;
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
         }
 
         return success;
@@ -301,7 +254,7 @@ public abstract class DBTable<T> {
             count = stmt.executeUpdate();
         }
         catch (SQLException e) {
-            log.log(Level.SEVERE, "Caught SQL Exception", e);
+            logger.log(Level.SEVERE, "Caught SQL Exception", e);
         }
         
         return count;
@@ -335,7 +288,7 @@ public abstract class DBTable<T> {
      * @return The list of the queried records
      */
     protected <T1> List<T1> executeQuery(String sql, QueryProcessor<T1> p, Object... args) {
-        log.log(Level.FINE, "Execute Query: {0}", sql);
+        logger.log(Level.FINE, "Execute Query: {0}", sql);
         List<T1> list = new ArrayList<>();
 
         try (Statement stmt = connection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -347,10 +300,10 @@ public abstract class DBTable<T> {
             }
         }
         catch (SQLException e) {
-            log.log(Level.INFO, "Caught SQL Exception", e);
+            logger.log(Level.INFO, "Caught SQL Exception", e);
         }
         
-        log.log(Level.FINE, "{0} records match the query", list.size());
+        logger.log(Level.FINE, "{0} records match the query", list.size());
 
         return list;
     }

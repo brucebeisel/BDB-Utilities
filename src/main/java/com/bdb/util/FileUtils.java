@@ -21,8 +21,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class FileUtils
-{
+/**
+ * Class contains static methods to manipulate files.
+ * 
+ * @author bruce
+ */
+public class FileUtils {
+    private FileUtils() {}
     /**
      * Copy a file to another
      * 
@@ -31,8 +36,7 @@ public class FileUtils
      * 
      * @exception IOException Thrown if either the source cannot be read or the destination cannot be written
      */
-    public static void copyFile(File srcFile, File destFile) throws IOException
-    {
+    public static void copyFile(File srcFile, File destFile) throws IOException {
         FileOutputStream os = null;
         try (FileInputStream is = new FileInputStream(srcFile)) {
             os = new FileOutputStream(destFile);
