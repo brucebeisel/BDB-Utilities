@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2015 Bruce Beisel
+ * Copyright (C) 2016 Bruce Beisel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -193,11 +193,12 @@ public class DBConnection implements BBRunnable {
      * Execute an SQL statement.
      * 
      * @param sql The SQL to be executed
+     * @return True if the SQL statement was executed successfully
      * @throws NoDbConnectionException There is no connection with the database
      * @throws SQLException An error occurred
      */
     public boolean execute(final String sql) throws NoDbConnectionException, SQLException {
-        boolean result = false;
+        boolean result;
         logger.log(Level.FINE, "Excute: {0}", sql);
 
         if (connection == null)
