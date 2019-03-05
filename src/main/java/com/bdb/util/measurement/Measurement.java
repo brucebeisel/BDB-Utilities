@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import javax.xml.bind.annotation.XmlValue;
 
+
 /**
  * A general class for all types of measurements (weight, distance, speed, etc.)
  * This class is immutable.

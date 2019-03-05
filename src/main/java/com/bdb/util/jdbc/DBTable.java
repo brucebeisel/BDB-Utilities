@@ -298,6 +298,8 @@ public abstract class DBTable<T> {
                 T1 item = p.processNextRecord(rs, args);
                 list.add(item);
             }
+
+            rs.close();
         }
         catch (SQLException e) {
             logger.log(Level.INFO, "Caught SQL Exception", e);
