@@ -16,8 +16,6 @@
  */
 package com.bdb.util;
 
-import javax.swing.*;
-
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

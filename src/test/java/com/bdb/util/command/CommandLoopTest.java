@@ -84,7 +84,7 @@ public class CommandLoopTest extends TestCase
             
             m = this.getClass().getMethod("handler2", int.class);
             Object args[] = new Object[1];
-            args[0] = new Integer(12);
+            args[0] = Integer.valueOf(12);
             cmd = new CommandTemplate(this, m, args);
             loop.sendCommand(cmd);
             cmd.waitForInvocation();
