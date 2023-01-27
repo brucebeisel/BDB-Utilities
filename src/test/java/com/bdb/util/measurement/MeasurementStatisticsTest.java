@@ -19,7 +19,7 @@ package com.bdb.util.measurement;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MeasurementStatisticsTest {

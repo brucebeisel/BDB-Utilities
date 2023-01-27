@@ -49,7 +49,8 @@ public class MeasurementAverage<M extends Measurement> {
      * @param currentValue A data sample to add to the average
      * @param valueDuration The duration of this data sample
      */
-    public void applyValue(M currentValue, Duration valueDuration) {
+    @SuppressWarnings("unchecked")
+	public void applyValue(M currentValue, Duration valueDuration) {
         //
         // Do no apply null values. Null values are invalid and therefore ignored.
         //
@@ -114,7 +115,8 @@ public class MeasurementAverage<M extends Measurement> {
         if (this.getClass() != other.getClass())
             return false;
         
-        MeasurementAverage<M> o = (MeasurementAverage<M>)other;
+        @SuppressWarnings("unchecked")
+		MeasurementAverage<M> o = (MeasurementAverage<M>)other;
         return duration.equals(o.duration) && value.equals(o.value);
     }
     

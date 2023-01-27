@@ -19,7 +19,7 @@ package com.bdb.util;
 import java.time.LocalDate;
 import java.time.Month;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;

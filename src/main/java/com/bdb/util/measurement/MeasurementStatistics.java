@@ -190,7 +190,8 @@ public class MeasurementStatistics<M extends Measurement> {
         if (this.getClass() != other.getClass())
             return false;
         
-        MeasurementStatistics<M> o = (MeasurementStatistics<M>)other;
+        @SuppressWarnings("unchecked")
+		MeasurementStatistics<M> o = (MeasurementStatistics<M>)other;
         return minimum.equals(o.minimum) && maximum.equals(o.maximum) && average.equals(o.average);
     }
     

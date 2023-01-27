@@ -98,7 +98,8 @@ public class DBConnection implements BBRunnable {
                 // The return value is ignore because we are only trying to reach the server,
                 // and exception will be thrown if the server cannot be communicated with.
                 //
-                boolean readOnly = connection.isReadOnly();
+                @SuppressWarnings("unused")
+				boolean readOnly = connection.isReadOnly();
             }
             else {
                 logger.log(Level.FINE, "Connecting to DB. URL = {0} User = {1}", new Object[]{url, user});

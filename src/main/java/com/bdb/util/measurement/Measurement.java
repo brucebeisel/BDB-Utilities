@@ -145,7 +145,8 @@ public abstract class Measurement implements Comparable<Measurement>, Serializab
      * @param other The value to add to this
      * @return The result of the addition in a new object
      */
-    public <T extends Measurement> T add(T other) {
+    @SuppressWarnings("unchecked")
+	public <T extends Measurement> T add(T other) {
         if (this.getClass() != other.getClass())
             throw new ClassCastException("Cannot add Measurements of different types");
 
@@ -161,7 +162,8 @@ public abstract class Measurement implements Comparable<Measurement>, Serializab
      * @param other The value to add to this
      * @return The result of the addition in a new object
      */
-    public <T extends Measurement> T subtract(T other) {
+    @SuppressWarnings("unchecked")
+	public <T extends Measurement> T subtract(T other) {
         if (this.getClass() != other.getClass())
             throw new ClassCastException("Cannot subtract Measurements of different types");
 

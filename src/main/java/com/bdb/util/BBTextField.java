@@ -56,7 +56,6 @@ public class BBTextField extends JTextField implements DocumentListener,
     private String validChars = null;
     private ErrorListener errorListener;
 
-    @SuppressWarnings("LeakingThisInConstructor")
     public BBTextField() {
         super();
         setDocument(new BBDocument(this));

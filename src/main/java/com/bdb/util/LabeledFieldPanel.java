@@ -32,7 +32,8 @@ public class LabeledFieldPanel<T extends Node> extends HBox {
         LABEL_RIGHT
     }
 
-    private static final long serialVersionUID = 8657357228739720158L;
+    @SuppressWarnings("unused")
+	private static final long serialVersionUID = 8657357228739720158L;
 
     private final Label label;
     private final T component;
