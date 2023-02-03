@@ -25,8 +25,6 @@ import java.util.function.DoubleFunction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.xml.bind.annotation.XmlValue;
-
 
 /**
  * A general class for all types of measurements (weight, distance, speed, etc.)
@@ -56,11 +54,9 @@ public abstract class Measurement implements Comparable<Measurement>, Serializab
     private static final long serialVersionUID = 220604177023335181L;
     private static Map<String,Unit> defaultUnits = new TreeMap<>();
 
-    @XmlValue
     private final double value;
     private final int comparePrecision;
     private final DoubleFunction<? extends Measurement> constructor;
-    //private final DoubleMeasurementFunction constructorWithUnit;
 
     /**
      * Constructor

@@ -38,7 +38,7 @@ public class MeasurementAverage<M extends Measurement> {
      * @param value The first data point with a given duration
      * @param duration The duration of the data point
      */
-    public MeasurementAverage(M value, Duration duration) {
+    public MeasurementAverage(M vaue, Duration duration) {
         this.value = value;
         this.duration = duration;
     }
